@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Portal de Jornais</title>
+  <!-- Incluindo o CSS do Bootstrap -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+  <!-- Incluindo o Font Awesome para os ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <style>
     .container {
@@ -16,10 +18,15 @@
       flex: 0 0 200px;
       margin-right: 20px;
     }
-    
+
     .pdf-list {
       flex: 1;
       padding-top: 70px;
+    }
+
+    h1.text-center {
+      border-bottom: 2.5px solid blue;
+      padding-bottom: 10px;
     }
   </style>
 
@@ -90,62 +97,104 @@
     document.addEventListener('DOMContentLoaded', function () {
       displayMostRecentPdf();
     });
-
+  
     function displayMostRecentPdf() {
+      // Dados simulados dos PDFs
       var dummyData = [
         { name: "Jornal Janeiro 2023.pdf", year: 2023, month: "01" },
         { name: "Jornal Fevereiro 2023.pdf", year: 2023, month: "02" },
         { name: "Jornal Março 2023.pdf", year: 2023, month: "03" }
       ];
-
+  
+      // Assumindo que os dados estão ordenados do mais antigo para o mais novo
       var mostRecentPdf = dummyData[dummyData.length - 1];
-
+  
+      // Exibindo o PDF mais recente
       displayPdf(mostRecentPdf);
     }
-
+  
     function displayPdf(pdf) {
       var pdfList = document.getElementById("pdfList");
-
+  
       var listItem = document.createElement("li");
       listItem.className = "list-group-item";
+  
+      var container = document.createElement("div");
+      container.className = "d-flex justify-content-between align-items-center";
+  
       var link = document.createElement("a");
       link.href = "caminho/do/pdf/" + pdf.name;
       link.textContent = pdf.name;
-      listItem.appendChild(link);
+  
+      var options = document.createElement("div");
+  
+      var printOption = document.createElement("button");
+      printOption.className = "btn btn-primary me-2";
+      printOption.textContent = "Imprimir";
+      printOption.addEventListener("click", function() {
+        window.print();
+      });
+  
+      var shareOption = document.createElement("button");
+      shareOption.className = "btn btn-primary me-2";
+      shareOption.textContent = "Compartilhar via e-mail";
+      shareOption.addEventListener("click", function() {
+      });
+  
+      var downloadOption = document.createElement("button");
+      downloadOption.className = "btn btn-primary";
+      downloadOption.textContent = "Baixar em PDF";
+      downloadOption.addEventListener("click", function() {
+      });
+  
+      options.appendChild(printOption);
+      options.appendChild(shareOption);
+      options.appendChild(downloadOption);
+  
+      container.appendChild(link);
+      container.appendChild(options);
+      listItem.appendChild(container);
       pdfList.appendChild(listItem);
     }
-
+  
     function filterPdfs() {
       var year = document.getElementById("year").value;
       var month = document.getElementById("month").value;
-
+  
+      // Limpar a lista de PDFs
       var pdfList = document.getElementById("pdfList");
       pdfList.innerHTML = "";
-
+  
+      // Dados simulados dos PDFs
       var dummyData = [
         { name: "Jornal Janeiro 2023.pdf", year: 2023, month: "01" },
         { name: "Jornal Fevereiro 2023.pdf", year: 2023, month: "02" },
         { name: "Jornal Março 2023.pdf", year: 2023, month: "03" }
       ];
-
+  
       dummyData.forEach(function (pdf) {
         if (pdf.year === parseInt(year) && pdf.month === month) {
           displayPdf(pdf);
         }
       });
     }
-
+  
     function clearFilter() {
       document.getElementById("year").value = "";
       document.getElementById("month").value = "";
-
+  
+      // Limpar a lista de PDFs
       var pdfList = document.getElementById("pdfList");
       pdfList.innerHTML = "";
-
+  
+      // Exibir o jornal mais recente novamente
       displayMostRecentPdf();
     }
   </script>
-
+  
+  
+  <!-- Incluindo o JavaScript do Bootstrap -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
