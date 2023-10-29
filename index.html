@@ -2,98 +2,79 @@
 <html>
 
 <head>
-  <meta charset="UTF-8" />
-  <title>Portal de Jornais</title>
-  <link rel="icon" href="https://www.laranjalpaulista.sp.gov.br/Arquitetura/Imagens/logo-laranjal.png"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acervo de Jornais | Laranjal Paulista</title>
+  <link rel="icon" href=""/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
   <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#"><i class="fas fa-home"></i> Laranjal Paulista</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Outras pages
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Pages</a></li>
-              <li><a class="dropdown-item" href="#">Pages</a></li>
-              <li><a class="dropdown-item" href="#">Pages</a></li>
-            </ul>
-          </li>
-        </ul>
-        <form class="d-flex ms-auto">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-          <button class="btn btn-light" type="submit">
-            <i class="fas fa-search"></i>
+  <header>
+    <nav class="navbar bg-blue">
+      <div class="container-fluid title-header">
+        <a class="navbar-brand" href="https://www.laranjalpaulista.sp.gov.br"><i class="fas fa-home"></i> Laranjal Paulista</a>
+      </div>
+    </nav>
+  </header>
+  
+  <main>
+    <div class="title-container txt-center">
+      <h1>MEMÓRIA VIVA</h1>
+      <p class="subtitle">
+        A história de Laranjal Paulista através dos jornais
+      </p>
+    </div>
+  
+    <div class="container">
+      <div class="filter-container">
+        <h1 class="text-center">Jornais</h1>
+  
+        <div class="mb-3">
+          <label for="newspaper" class="form-label">Jornal:</label>
+          <select id="newspaper" class="form-select">
+            <option value="">Selecione o jornal</option>
+            <option value="A Tarde">A Tarde</option>
+            <option value="Cidade de Laranjal">Cidade de Laranjal</option>
+            <option value="O Alerta">O Alerta</option>
+            <option value="O Comércio de Laranjal">O Comércio de Laranjal</option>
+          </select>
+        </div>
+  
+        <div class="mb-3" id="yearContainer" style="display:none;">
+          <label for="year" class="form-label">Ano:</label>
+          <select id="year" class="form-select">
+            <option value="">Selecione o ano</option>
+            <option value="2023">2023</option>
+          </select>
+        </div>
+  
+        <div class="mb-3" id="monthContainer" style="display:none;">
+          <label for="month" class="form-label">Mês:</label>
+          <select id="month" class="form-select">
+            <option value="">Selecione o mês</option>
+            <option value="01">Janeiro</option>
+          </select>
+        </div>
+  
+        <div class="text-center">
+          <button onclick="filterPdfs()" class="btn btn-primary">
+            Filtrar
           </button>
-        </form>
+          <button onclick="clearFilter()" class="btn btn-secondary">
+            Limpar Filtro
+          </button>
+        </div>
       </div>
+  
+      <ul class="list-group mt-3 pdf-list" id="pdfList">
+      </ul>
     </div>
-  </nav>
-
-  <div class="title-container text-center my-4">
-    <h1>MEMÓRIA VIVA</h1>
-    <p class="subtitle">
-      A história de Laranjal Paulista através dos jornais
-    </p>
-  </div>
-
-  <div class="container">
-    <div class="filter-container">
-      <h1 class="text-center">Jornais</h1>
-
-      <div class="mb-3">
-        <label for="newspaper" class="form-label">Jornal:</label>
-        <select id="newspaper" class="form-select">
-          <option value="">Selecione o jornal</option>
-          <option value="A Tarde">A Tarde</option>
-          <option value="Cidade de Laranjal">Cidade de Laranjal</option>
-          <option value="O Alerta">O Alerta</option>
-          <option value="O Comércio de Laranjal">O Comércio de Laranjal</option>
-        </select>
-      </div>
-
-      <div class="mb-3" id="yearContainer" style="display:none;">
-        <label for="year" class="form-label">Ano:</label>
-        <select id="year" class="form-select">
-          <option value="">Selecione o ano</option>
-          <option value="2023">2023</option>
-        </select>
-      </div>
-
-      <div class="mb-3" id="monthContainer" style="display:none;">
-        <label for="month" class="form-label">Mês:</label>
-        <select id="month" class="form-select">
-          <option value="">Selecione o mês</option>
-          <option value="01">Janeiro</option>
-        </select>
-      </div>
-
-      <div class="text-center">
-        <button onclick="filterPdfs()" class="btn btn-primary">
-          Filtrar
-        </button>
-        <button onclick="clearFilter()" class="btn btn-secondary">
-          Limpar Filtro
-        </button>
-      </div>
-    </div>
-
-    <ul class="list-group mt-3 pdf-list" id="pdfList">
-    </ul>
-  </div>
-
+  </main>
+ 
   <!-- Seu script JS -->
   <script src="./script.js"></script>
   <!-- Script do Bootstrap -->

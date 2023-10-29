@@ -1,7 +1,27 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+
+.bg-blue {
+  background-color: #005CA8;
+  color: white;
+}
+
+.bg-blue a{
+  color: white;
+  transform-origin: top left;
+  transition: transform 0.3s;
+}
+
+.bg-blue a:hover{
+  color: white;
+  transform: scale(1.1);
+}
+
 .container {
   display: flex;
   margin-top: 20px;
-  /* Adicione essa linha */
 }
 
 .filter-container {
@@ -10,9 +30,15 @@
 }
 
 .pdf-list {
+  margin: 0!important;
   flex: 1;
-  padding-top: 70px;
-  /* Adicione essa linha */
+  padding-top: 60px;
+}
+
+@media (max-width: 768px) {
+  .container{
+    flex-direction: column;
+  }
 }
 
 h1.text-center {
@@ -20,17 +46,47 @@ h1.text-center {
   padding-bottom: 10px;
 }
 .title-container {
-  margin-top: 40px; /* adiciona um espaçamento no topo para distanciar do elemento acima */
-  margin-bottom: 20px; /* espaçamento entre o título e o conteúdo abaixo */
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .title-container h1 {
-  font-size: 2.5em; /* tamanho da fonte do título */
-  margin-bottom: 10px; /* espaçamento entre o título e o subtítulo */
-  color: #333; /* cor do título */
+  font-size: 2.5em; 
+  margin-bottom: 10px;
+  color: #333;
+}
+
+@media (min-width: 320px) and (max-width: 768px){
+  .title-header{
+    justify-content: center!important;
+  }
+  .txt-center h1{
+    font-size: 2.5rem;
+  }
+  .txt-center p{
+    font-size: 1.2rem;
+  }
 }
 
 .subtitle {
-  font-size: 1.4em; /* tamanho da fonte do subtítulo */
-  color: #666; /* cor do subtítulo */
+  font-size: 1.4em;
+  color: #666;
+}
+
+.txt-center{
+  text-align: center;
+}
+
+@media (min-width: 320px) and (max-width: 992px) {
+  .icons-container{
+    display: flex;
+  }
+}
+
+.btn {
+  transition: background-color 0.3s;
+}
+
+.btn:active {
+  background-color: #e0e0e0;
 }
