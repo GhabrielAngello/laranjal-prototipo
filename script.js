@@ -41,6 +41,7 @@ function filterPdfs() {
         const link = document.createElement("a");
         link.href = `#${newspaper}-${year}-${month}-${i}`;
         link.textContent = `${newspaper} - Edição ${i} de ${year}-${month}`;
+        link.className = "pdf-link";
         listItem.appendChild(link);
   
         const iconsContainer = document.createElement("div");
