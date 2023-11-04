@@ -109,3 +109,21 @@ function clearFilter() {
   document.getElementById("yearContainer").style.display = "none";
   document.getElementById("monthContainer").style.display = "none";
 }
+
+
+//Quando o usuário rolar para baixo 20px da parte superior do documento, mostre o botão
+window.onscroll = function() { scrollFunction() };
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+
+// Quando o usuário clicar no botão, role para o topo do documento
+function topFunction() {
+    document.body.scrollTop = 0; // Para Safari
+    document.documentElement.scrollTop = 0; // Para Chrome, Firefox, IE e Opera
+}
