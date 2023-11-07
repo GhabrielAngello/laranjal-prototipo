@@ -84,7 +84,7 @@ h2.text-center {
 }
 
 .form-label{
-  font-size: 1.1rem;
+  font-size: 1.25rem;
 }
 
 .p-footer{
@@ -103,6 +103,9 @@ h2.text-center {
   z-index: 99; /* Fica sobre outros elementos */
 }
 
+.form-select{
+  font-size: 1.1rem;
+}
 
 @media (max-width: 426px) {
   #p-footer{
@@ -152,7 +155,7 @@ h2.text-center {
     margin-bottom: 0;
   }
   .pdf-list{
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
   .form-select{
     font-size: 1.2rem;

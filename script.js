@@ -36,15 +36,53 @@ function displayInitialContent() {
 function searchPdfs(newspaper, year) {
   // Simulando uma busca de dados, aqui você faria uma chamada a uma API ou banco de dados
   var months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-  
+
   var pdfList = document.getElementById('pdfList');
   pdfList.innerHTML = ''; // Limpa a lista
 
   months.forEach(function(month, index) {
-    // O caminho do arquivo terá que ser ajustado para apontar para o local correto dos seus PDFs
     var listItem = document.createElement('li');
-    listItem.className = 'list-group-item';
-    listItem.innerHTML = '<a href="caminho/para/o/pdf/' + newspaper + '_' + year + '_' + (index + 1) + '.pdf" target="_blank">' + month + ' de ' + year + '</a>';
+    listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+
+    // Link para o PDF
+    var pdfLink = 'caminho/para/o/pdf/' + newspaper + '_' + year + '_' + (index + 1) + '.pdf';
+    listItem.innerHTML = '<a href="' + pdfLink + '" target="_blank">' + month + ' de ' + year + '</a>';
+
+    // Container para os ícones
+    var iconsContainer = document.createElement('div');
+
+    // Botão de imprimir
+    var printButton = document.createElement('button');
+    printButton.className = 'btn';
+    printButton.innerHTML = '<i class="bi bi-printer" style="font-size: 25px;"></i>';
+    printButton.onclick = function () {
+      window.open(pdfLink, '_blank');
+    };
+
+    // Botão de email
+    var emailButton = document.createElement('button');
+    emailButton.className = 'btn';
+    emailButton.innerHTML = '<i class="bi bi-envelope" style="font-size: 25px;"></i>';
+    emailButton.onclick = function () {
+      window.location.href = 'mailto:?subject=' + encodeURIComponent(month + ' de ' + year) + '&body=' + encodeURIComponent('Confira este PDF: ' + window.location.href + pdfLink);
+    };
+
+    // Botão de download
+    var downloadButton = document.createElement('a');
+    downloadButton.className = 'btn';
+    downloadButton.href = pdfLink;
+    downloadButton.download = month + ' de ' + year + '.pdf';
+    downloadButton.innerHTML = '<i class="bi bi-file-earmark-arrow-down" style="font-size: 25px;"></i>';
+
+    // Adiciona botões ao container
+    iconsContainer.appendChild(printButton);
+    iconsContainer.appendChild(emailButton);
+    iconsContainer.appendChild(downloadButton);
+
+    // Adiciona container ao listItem
+    listItem.appendChild(iconsContainer);
+
+    // Adiciona listItem ao pdfList
     pdfList.appendChild(listItem);
   });
 }
