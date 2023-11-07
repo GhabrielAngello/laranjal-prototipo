@@ -50,11 +50,12 @@ function searchPdfs(newspaper, year) {
 
     // Container para os ícones
     var iconsContainer = document.createElement('div');
+    iconsContainer.className = 'cmp-button';
 
     // Botão de imprimir
     var printButton = document.createElement('button');
     printButton.className = 'btn';
-    printButton.innerHTML = '<i class="bi bi-printer" style="font-size: 25px;"></i>';
+    printButton.innerHTML = '<i class="bi bi-printer""></i>';
     printButton.onclick = function () {
       window.open(pdfLink, '_blank');
     };
@@ -62,7 +63,7 @@ function searchPdfs(newspaper, year) {
     // Botão de email
     var emailButton = document.createElement('button');
     emailButton.className = 'btn';
-    emailButton.innerHTML = '<i class="bi bi-envelope" style="font-size: 25px;"></i>';
+    emailButton.innerHTML = '<i class="bi bi-envelope""></i>';
     emailButton.onclick = function () {
       window.location.href = 'mailto:?subject=' + encodeURIComponent(month + ' de ' + year) + '&body=' + encodeURIComponent('Confira este PDF: ' + window.location.href + pdfLink);
     };
@@ -72,7 +73,7 @@ function searchPdfs(newspaper, year) {
     downloadButton.className = 'btn';
     downloadButton.href = pdfLink;
     downloadButton.download = month + ' de ' + year + '.pdf';
-    downloadButton.innerHTML = '<i class="bi bi-file-earmark-arrow-down" style="font-size: 25px;"></i>';
+    downloadButton.innerHTML = '<i class="bi bi-file-earmark-arrow-down"></i>';
 
     // Adiciona botões ao container
     iconsContainer.appendChild(printButton);
